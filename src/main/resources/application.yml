@@ -1,0 +1,14 @@
+server:
+  servlet:
+    context-path: /orders-management-api
+spring:
+  threads:
+    virtual:
+      enabled: true
+  main:
+    allow-circular-references: true
+
+
+region: us-east-1
+writeRedisUrl: teste-teste.com
+readRedisUrl: teste-teste.com
