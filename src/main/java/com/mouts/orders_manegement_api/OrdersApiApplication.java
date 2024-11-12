@@ -21,6 +21,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 
+import java.time.Duration;
+
 @SpringBootApplication
 public class OrdersApiApplication {
 
@@ -72,11 +74,7 @@ public class OrdersApiApplication {
 	@Primary
 	@Qualifier("products-write")
 	public RedisCommands<String, String> createWriteRedisClientProducts() {
-		String redisUrl = "redis://redis.railway.internal:6379";
-
-		RedisURI redisUri = RedisURI.create(redisUrl);
-
-		var client = RedisClient.create(redisUri);
+		var client = RedisClient.create(RedisURI.Builder.redis(writeRedisUrl, 6379).withDatabase(0).withTimeout(Duration.ofSeconds(5)).build());
 		var connection = client.connect();
 		return connection.sync();
 	}
@@ -84,11 +82,7 @@ public class OrdersApiApplication {
 	@Bean
 	@Qualifier("products-read")
 	public RedisCommands<String, String> createReadRedisClientProducts() {
-		String redisUrl = "redis://redis.railway.internal:6379";
-
-		RedisURI redisUri = RedisURI.create(redisUrl);
-
-		var client = RedisClient.create(redisUri);
+		var client = RedisClient.create(RedisURI.Builder.redis(readRedisUrl, 6379).withDatabase(0).withTimeout(Duration.ofSeconds(5)).build());
 		var connection = client.connect();
 		return connection.sync();
 	}
