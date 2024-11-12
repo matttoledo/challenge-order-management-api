@@ -27,12 +27,6 @@ public class OrdersApiApplication {
 	@Value("${region}")
 	private String region;
 
-	@Value("${writeRedisUrl}")
-	private String writeRedisUrl;
-
-	@Value("${readRedisUrl}")
-	private String readRedisUrl;
-
 	public static final Integer MAX_CONNECTIONS = 500;
 
 	public static void main(String[] args) {
