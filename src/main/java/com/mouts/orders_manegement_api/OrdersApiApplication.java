@@ -59,7 +59,7 @@ public class OrdersApiApplication {
 				.withClientConfiguration(new ClientConfiguration().withMaxConnections(10))  // Configuração do cliente
 				.build();
 	}
-	
+
 	@Bean
 	public DynamoDBMapperConfig createDynamoDBMapperConfig() {
 		return DynamoDBMapperConfig.builder()
