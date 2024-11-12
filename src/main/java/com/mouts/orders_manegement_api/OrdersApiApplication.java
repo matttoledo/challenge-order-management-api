@@ -66,7 +66,7 @@ public class OrdersApiApplication {
 	@Primary
 	@Qualifier("products-write")
 	public RedisCommands<String, String> createWriteRedisClientProducts() {
-		String redisUrl = "redis://redis.railway.internal";
+		String redisUrl = "redis://redis.railway.internal:6379";
 
 		RedisURI redisUri = RedisURI.create(redisUrl);
 
@@ -78,7 +78,7 @@ public class OrdersApiApplication {
 	@Bean
 	@Qualifier("products-read")
 	public RedisCommands<String, String> createReadRedisClientProducts() {
-		String redisUrl = "redis://redis.railway.internal";
+		String redisUrl = "redis://redis.railway.internal:6379";
 
 		RedisURI redisUri = RedisURI.create(redisUrl);
 
