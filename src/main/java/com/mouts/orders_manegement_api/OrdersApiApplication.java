@@ -27,6 +27,16 @@ public class OrdersApiApplication {
 	@Value("${region}")
 	private String region;
 
+	@Value("${writeRedisUrl}")
+	private String writeRedisUrl;
+
+	@Value("${readRedisUrl}")
+	private String readRedisUrl;
+
+	@Value("${dynamoDBUrl}")
+	private String dynamoDBUrl;
+
+
 	public static final Integer MAX_CONNECTIONS = 500;
 
 	public static void main(String[] args) {
@@ -43,14 +53,13 @@ public class OrdersApiApplication {
 
 	@Bean
 	public AmazonDynamoDB createDynamoClient() {
-		String localstackEndpoint = "http://dynamodb.railway.internal";
-
 		return AmazonDynamoDBClientBuilder.standard()
-				.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(localstackEndpoint, "us-east-1"))  // Endpoint para LocalStack
-				.withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials("test", "test")))  // Credenciais fictícias
+				.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(dynamoDBUrl, "us-east-1"))
+				.withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials("test", "test")))
 				.withClientConfiguration(new ClientConfiguration().withMaxConnections(10))  // Configuração do cliente
 				.build();
 	}
+	
 	@Bean
 	public DynamoDBMapperConfig createDynamoDBMapperConfig() {
 		return DynamoDBMapperConfig.builder()
@@ -65,11 +74,8 @@ public class OrdersApiApplication {
 	@Bean
 	@Primary
 	@Qualifier("products-write")
-	public RedisCommands<String, String> createWriteRedisClientProducts() {
-		String redisUrl = "redis://redis.railway.internal:6379";
-
-		RedisURI redisUri = RedisURI.create(redisUrl);
-
+	public RedisCommands<String, String> createWriteRedisClientProducts() {;
+		RedisURI redisUri = RedisURI.create(writeRedisUrl);
 		var client = RedisClient.create(redisUri);
 		var connection = client.connect();
 		return connection.sync();
@@ -78,10 +84,7 @@ public class OrdersApiApplication {
 	@Bean
 	@Qualifier("products-read")
 	public RedisCommands<String, String> createReadRedisClientProducts() {
-		String redisUrl = "redis://redis.railway.internal:6379";
-
-		RedisURI redisUri = RedisURI.create(redisUrl);
-
+		RedisURI redisUri = RedisURI.create(readRedisUrl);
 		var client = RedisClient.create(redisUri);
 		var connection = client.connect();
 		return connection.sync();
