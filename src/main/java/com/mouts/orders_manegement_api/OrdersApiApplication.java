@@ -49,7 +49,7 @@ public class OrdersApiApplication {
 
 	@Bean
 	public AmazonDynamoDB createDynamoClient() {
-		String localstackEndpoint = "http://localhost:4566";  // URL do LocalStack
+		String localstackEndpoint = "http://localstack-dynamodb.railway.internal:4566";  // URL do LocalStack
 
 		return AmazonDynamoDBClientBuilder.standard()
 				.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(localstackEndpoint, "us-east-1"))  // Endpoint para LocalStack
