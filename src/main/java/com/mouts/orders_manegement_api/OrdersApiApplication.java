@@ -3,7 +3,6 @@ package com.mouts.orders_manegement_api;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
@@ -21,8 +20,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
-
-import java.time.Duration;
 
 @SpringBootApplication
 public class OrdersApiApplication {
@@ -75,13 +72,10 @@ public class OrdersApiApplication {
 	@Primary
 	@Qualifier("products-write")
 	public RedisCommands<String, String> createWriteRedisClientProducts() {
-		// URL: redis://default:abc@autorack.proxy.rlwy.net:33891
 		String redisUrl = "redis://default:nKICaoVYAoZCgjKHvUGRGCLzaqhxuCve@autorack.proxy.rlwy.net:33891";
 
-		// Convertendo a URL para RedisURI
 		RedisURI redisUri = RedisURI.create(redisUrl);
 
-		// Criando o RedisClient e a conexão
 		var client = RedisClient.create(redisUri);
 		var connection = client.connect();
 		return connection.sync();
@@ -90,13 +84,10 @@ public class OrdersApiApplication {
 	@Bean
 	@Qualifier("products-read")
 	public RedisCommands<String, String> createReadRedisClientProducts() {
-		// URL: redis://default:abc@autorack.proxy.rlwy.net:33891
 		String redisUrl = "redis://default:nKICaoVYAoZCgjKHvUGRGCLzaqhxuCve@autorack.proxy.rlwy.net:33891";
 
-		// Convertendo a URL para RedisURI
 		RedisURI redisUri = RedisURI.create(redisUrl);
 
-		// Criando o RedisClient e a conexão
 		var client = RedisClient.create(redisUri);
 		var connection = client.connect();
 		return connection.sync();

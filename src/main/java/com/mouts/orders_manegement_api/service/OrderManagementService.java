@@ -1,9 +1,14 @@
 package com.mouts.orders_manegement_api.service;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mouts.orders_manegement_api.client.RedisClient;
 import com.mouts.orders_manegement_api.dto.OrderDTO;
+import com.mouts.orders_manegement_api.dto.ProductDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import static com.mouts.orders_manegement_api.constants.Constants.ORDER_CACHE_PREFIX;
 
 @Component
 @AllArgsConstructor
@@ -13,22 +18,38 @@ public class OrderManagementService {
 
     private OrderService orderService;
 
-    private void calculateProductsValue(OrderDTO orderDTO){
-        var result = 0.0;
-        for (var product : orderDTO.getProducts()){
-            result = productService.getPriceByProductId(product.getId()) + result;
-        }
-        orderDTO.setPrice(result);
+    private RedisClient redisClient;
+
+    private ObjectMapper objectMapper;
+
+    private void calculateProductsValue(OrderDTO orderDTO) {
+        var totalPrice = orderDTO.getProducts().stream()
+                .peek(product -> {
+                    var productPrice = productService.getPriceByProductId(product.getId());
+                    product.setPrice(productPrice);
+                })
+                .mapToDouble(ProductDTO::getPrice)
+                .sum();
+
+        orderDTO.setPrice(totalPrice);
     }
 
 
     public OrderDTO getOrderById(String id) throws Exception {
-        var orderDTO = orderService.entityToDTO(orderService.recoverOrderById(id));
-        calculateProductsValue(orderDTO);
-        return orderDTO;
+        var payload = redisClient.get(String.format(ORDER_CACHE_PREFIX, id));
+        if(payload == null){
+            redisClient.setex(String.format(ORDER_CACHE_PREFIX, id), 36000, objectMapper.writeValueAsString(orderService.entityToDTO(orderService.recoverOrderById(id))));
+        }
+        return objectMapper.readValue(redisClient.get(String.format(ORDER_CACHE_PREFIX, id)), OrderDTO.class);
     }
 
     public void createOrder(OrderDTO orderDTO) throws Exception {
+        try{
+            calculateProductsValue(orderDTO);
+            orderDTO.setStatus("DONE");
+        }catch (Exception e){
+            orderDTO.setStatus("FAIL");
+        }
         orderService.createOrder(orderDTO);
     }
 }
