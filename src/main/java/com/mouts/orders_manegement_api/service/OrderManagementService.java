@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mouts.orders_manegement_api.client.RedisClient;
 import com.mouts.orders_manegement_api.dto.OrderDTO;
 import com.mouts.orders_manegement_api.dto.ProductDTO;
+import com.mouts.orders_manegement_api.exception.EmptyParamException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -49,6 +50,9 @@ public class OrderManagementService {
     }
 
     public void createOrder(OrderDTO orderDTO) throws Exception {
+        if(orderDTO.getId() == null  || orderDTO.getProducts() == null || orderDTO.getId().isEmpty() || orderDTO.getProducts().isEmpty())
+            throw new EmptyParamException("id and products could not be null");
+
         try{
             calculateProductsValue(orderDTO);
             orderDTO.setStatus("DONE");
