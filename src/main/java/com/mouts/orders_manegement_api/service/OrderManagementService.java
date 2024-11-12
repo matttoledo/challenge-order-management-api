@@ -8,6 +8,8 @@ import com.mouts.orders_manegement_api.dto.ProductDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.ForkJoinPool;
+
 import static com.mouts.orders_manegement_api.constants.Constants.ORDER_CACHE_PREFIX;
 
 @Component
@@ -23,14 +25,17 @@ public class OrderManagementService {
     private ObjectMapper objectMapper;
 
     private void calculateProductsValue(OrderDTO orderDTO) {
-        var totalPrice = orderDTO.getProducts().stream()
-                .peek(product -> {
-                    var productPrice = productService.getPriceByProductId(product.getId());
-                    product.setPrice(productPrice);
-                })
-                .mapToDouble(ProductDTO::getPrice)
-                .sum();
+        ForkJoinPool forkJoinPool = new ForkJoinPool();
 
+        var totalPrice = forkJoinPool.submit(() ->
+                orderDTO.getProducts().parallelStream()
+                        .peek(product -> {
+                            var productPrice = productService.getPriceByProductId(product.getId());
+                            product.setPrice(productPrice);
+                        })
+                        .mapToDouble(ProductDTO::getPrice)
+                        .sum()
+        ).join();
         orderDTO.setPrice(totalPrice);
     }
 

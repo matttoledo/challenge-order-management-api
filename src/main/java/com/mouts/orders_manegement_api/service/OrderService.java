@@ -7,10 +7,12 @@ import com.mouts.orders_manegement_api.client.RedisClient;
 import com.mouts.orders_manegement_api.dto.OrderDTO;
 import com.mouts.orders_manegement_api.dto.ProductDTO;
 import com.mouts.orders_manegement_api.entity.Order;
+import com.mouts.orders_manegement_api.exception.OrderNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 @Component
 @AllArgsConstructor
@@ -26,8 +28,9 @@ public class OrderService {
         orderDynamoDBClient.saveOrder(dtoToEntity(orderDTO));
     }
 
-    public Order recoverOrderById(String id) {
-        return orderDynamoDBClient.getOrder(id);
+    public Order recoverOrderById(String id) throws Exception {
+        Optional<Order> orderOptional = Optional.ofNullable(orderDynamoDBClient.getOrder(id));
+        return orderOptional.orElseThrow(() -> new OrderNotFoundException("Order with id " + id + " not found."));
     }
 
 
