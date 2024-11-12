@@ -12,11 +12,11 @@ import org.springframework.stereotype.Component;
 public class RedisClientImpl implements RedisClient {
 
     @Autowired
-    @Qualifier("gift-card-write")
+    @Qualifier("products-write")
     private RedisCommands<String, String> redisCommandsWrite;
 
     @Autowired
-    @Qualifier("gift-card-read")
+    @Qualifier("products-read")
     private RedisCommands<String, String> redisCommandsRead;
 
     @Override

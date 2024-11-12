@@ -10,5 +10,5 @@ spring:
 
 
 region: us-east-1
-writeRedisUrl: teste-teste.com
-readRedisUrl: teste-teste.com
+writeRedisUrl: redis://default:nKICaoVYAoZCgjKHvUGRGCLzaqhxuCve@autorack.proxy.rlwy.net:33891
+readRedisUrl: redis://default:abc@autorack.proxy.rlwy.net:33891

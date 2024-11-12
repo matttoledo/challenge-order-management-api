@@ -6,8 +6,10 @@ services:
     ports:
       - "4566:4566"  # Porta para acessar o LocalStack
       - "4510-4559:4510-4559"  # Portas para os serviços individuais
+      - "6379:6379"  # Porta para o Redis
+      - "8000:8000"  # Porta para o DynamoDB
     environment:
-      - SERVICES=sqs,dynamodb,redis
+      - SERVICES=dynamodb,redis
       - DEFAULT_REGION=us-east-1
     volumes:
       - "./localstack:/var/lib/localstack"

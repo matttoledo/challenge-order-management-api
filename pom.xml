@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.5</version>
+		<version>2.5.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.mouts</groupId>
@@ -27,13 +27,14 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>23</java.version>
+		<java.version>17</java.version>
 		<aws-java-sdk-sqs.version>1.12.150</aws-java-sdk-sqs.version>
 		<camel-aws.version>2.25.4</camel-aws.version>
 		<springfox-swagger-ui.version>2.9.2</springfox-swagger-ui.version>
 		<springfox-swagger2.version>2.9.2</springfox-swagger2.version>
 		<aws-java-sdk-dynamodb.version>1.12.150</aws-java-sdk-dynamodb.version>
 		<lettuce.version>6.3.2.RELEASE</lettuce.version>
+		<lombok.version>1.18.32</lombok.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -77,12 +78,17 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<optional>true</optional>
+			<version>${lombok.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>5.1.5</version>
 		</dependency>
 	</dependencies>
 

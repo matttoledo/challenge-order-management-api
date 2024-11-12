@@ -13,7 +13,7 @@ public class OrderManagementService {
 
     private OrderService orderService;
 
-    public void calculateProductsValue(OrderDTO orderDTO){
+    private void calculateProductsValue(OrderDTO orderDTO){
         var result = 0.0;
         for (var product : orderDTO.getProducts()){
             result = productService.getPriceByProductId(product.getId()) + result;
@@ -28,7 +28,7 @@ public class OrderManagementService {
         return orderDTO;
     }
 
-    public void createOrder(OrderDTO orderDTO){
+    public void createOrder(OrderDTO orderDTO) throws Exception {
         orderService.createOrder(orderDTO);
     }
 }
