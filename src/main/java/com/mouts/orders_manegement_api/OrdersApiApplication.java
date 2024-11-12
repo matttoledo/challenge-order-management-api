@@ -21,8 +21,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 
-import java.time.Duration;
-
 @SpringBootApplication
 public class OrdersApiApplication {
 
@@ -51,7 +49,7 @@ public class OrdersApiApplication {
 
 	@Bean
 	public AmazonDynamoDB createDynamoClient() {
-		String localstackEndpoint = "http://localstack-dynamodb.railway.internal:4566";  // URL do LocalStack
+		String localstackEndpoint = "https://dynamodb-production.up.railway.app";
 
 		return AmazonDynamoDBClientBuilder.standard()
 				.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(localstackEndpoint, "us-east-1"))  // Endpoint para LocalStack
@@ -74,7 +72,11 @@ public class OrdersApiApplication {
 	@Primary
 	@Qualifier("products-write")
 	public RedisCommands<String, String> createWriteRedisClientProducts() {
-		var client = RedisClient.create(RedisURI.Builder.redis(writeRedisUrl, 6379).withDatabase(0).withTimeout(Duration.ofSeconds(5)).build());
+		String redisUrl = "redis://default:nKICaoVYAoZCgjKHvUGRGCLzaqhxuCve@autorack.proxy.rlwy.net:33891";
+
+		RedisURI redisUri = RedisURI.create(redisUrl);
+
+		var client = RedisClient.create(redisUri);
 		var connection = client.connect();
 		return connection.sync();
 	}
@@ -82,7 +84,11 @@ public class OrdersApiApplication {
 	@Bean
 	@Qualifier("products-read")
 	public RedisCommands<String, String> createReadRedisClientProducts() {
-		var client = RedisClient.create(RedisURI.Builder.redis(readRedisUrl, 6379).withDatabase(0).withTimeout(Duration.ofSeconds(5)).build());
+		String redisUrl = "redis://default:nKICaoVYAoZCgjKHvUGRGCLzaqhxuCve@autorack.proxy.rlwy.net:33891";
+
+		RedisURI redisUri = RedisURI.create(redisUrl);
+
+		var client = RedisClient.create(redisUri);
 		var connection = client.connect();
 		return connection.sync();
 	}

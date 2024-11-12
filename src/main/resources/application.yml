@@ -10,5 +10,3 @@ spring:
 
 
 region: us-east-1
-writeRedisUrl: redis.railway.internal
-readRedisUrl: redis.railway.internal
