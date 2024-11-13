@@ -14,7 +14,7 @@ public class OrderController {
 
     private OrderManagementService orderManagementService;
 
-    @GetMapping("/{productId}")
+    @GetMapping("/{id}")
     public ResponseEntity<OrderDTO> getOrderById(@PathVariable String id) throws Exception {
         return ResponseEntity.ok().body(orderManagementService.getOrderById(id));
     }
