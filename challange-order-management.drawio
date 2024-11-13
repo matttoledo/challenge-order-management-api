@@ -1,0 +1,49 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" version="24.8.4">
+  <diagram name="Página-1" id="thfVGNfcetq1ANdHKdvp">
+    <mxGraphModel dx="1434" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="IKrRBmfiy75GYIZu_ny7-1" value="c" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#000066;" vertex="1" parent="1">
+          <mxGeometry x="100" y="110" width="710" height="490" as="geometry" />
+        </mxCell>
+        <mxCell id="IKrRBmfiy75GYIZu_ny7-18" value="getProductPriceById" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#FFFFFF;strokeColor=#FFFFFF;" edge="1" parent="1" source="IKrRBmfiy75GYIZu_ny7-2" target="IKrRBmfiy75GYIZu_ny7-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IKrRBmfiy75GYIZu_ny7-2" value="&lt;font color=&quot;#ffffff&quot;&gt;orders-management-api&lt;/font&gt;" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.android;fillColor=#00CC00;gradientColor=none;strokeColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry x="470" y="313" width="73.5" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="IKrRBmfiy75GYIZu_ny7-3" value="&lt;font color=&quot;#ffffff&quot;&gt;dynamoDB&lt;br&gt;orders table&lt;/font&gt;" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.dynamo_db;fillColor=#2E73B8;gradientColor=none;" vertex="1" parent="1">
+          <mxGeometry x="670" y="314.5" width="72" height="81" as="geometry" />
+        </mxCell>
+        <mxCell id="IKrRBmfiy75GYIZu_ny7-5" value="&lt;font color=&quot;#ffffff&quot;&gt;redis&lt;/font&gt;&lt;div&gt;&lt;font color=&quot;#ffffff&quot;&gt;offers cache&lt;/font&gt;&lt;/div&gt;" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.redis;fillColor=#2E73B8;gradientColor=none;" vertex="1" parent="1">
+          <mxGeometry x="476.75" y="480" width="60" height="63" as="geometry" />
+        </mxCell>
+        <mxCell id="IKrRBmfiy75GYIZu_ny7-14" value="&lt;font color=&quot;#ffffff&quot;&gt;products-api&lt;/font&gt;" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.android;fillColor=#EE472A;gradientColor=none;" vertex="1" parent="1">
+          <mxGeometry x="470" y="140" width="73.5" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="IKrRBmfiy75GYIZu_ny7-16" value="getOrderById (cached)&lt;div&gt;createOrder&lt;/div&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fillColor=#FFFFFF;strokeColor=#FFFFFF;" edge="1" parent="1" source="IKrRBmfiy75GYIZu_ny7-15" target="IKrRBmfiy75GYIZu_ny7-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IKrRBmfiy75GYIZu_ny7-15" value="&lt;font color=&quot;#ffffff&quot;&gt;orders-api&lt;/font&gt;" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.android;fillColor=#EE472A;gradientColor=none;" vertex="1" parent="1">
+          <mxGeometry x="190" y="310" width="73.5" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="IKrRBmfiy75GYIZu_ny7-20" value="&lt;font color=&quot;#ffffff&quot; style=&quot;font-size: 18px;&quot;&gt;order-management-challenge&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="133.5" y="140" width="256.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="IKrRBmfiy75GYIZu_ny7-21" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;strokeColor=#FFFFFF;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="IKrRBmfiy75GYIZu_ny7-5" target="IKrRBmfiy75GYIZu_ny7-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="430" as="sourcePoint" />
+            <mxPoint x="440" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IKrRBmfiy75GYIZu_ny7-23" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;strokeColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="IKrRBmfiy75GYIZu_ny7-2" target="IKrRBmfiy75GYIZu_ny7-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="517" y="490" as="sourcePoint" />
+            <mxPoint x="517" y="407" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
