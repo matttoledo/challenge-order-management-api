@@ -19,7 +19,7 @@ public class OrderController {
         return ResponseEntity.ok().body(orderManagementService.getOrderById(id));
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<OrderDTO> createOrder(@RequestBody OrderDTO orderDTO) throws Exception {
         orderManagementService.createOrder(orderDTO);
         return ResponseEntity.ok().build();
