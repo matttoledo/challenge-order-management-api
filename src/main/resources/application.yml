@@ -10,6 +10,3 @@ spring:
 
 
 region: us-east-1
-writeRedisUrl: ${Redis.REDIS_URL}
-readRedisUrl: ${Redis.REDIS_URL}
-dynamoDBUrl: http://dynamodb.railway.internal

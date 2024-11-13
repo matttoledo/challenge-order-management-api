@@ -12,7 +12,7 @@
 	<artifactId>orders-manegement-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>orders-api</name>
-	<description>Demo project for Spring Boot</description>
+	<description>orders-management-challenge</description>
 	<url/>
 	<licenses>
 		<license/>
