@@ -10,8 +10,3 @@ spring:
 
 
 region: us-east-1
-
-logging:
-  level:
-    org.springframework.web: DEBUG
-    org.springframework.web.servlet.mvc.method: TRACE
