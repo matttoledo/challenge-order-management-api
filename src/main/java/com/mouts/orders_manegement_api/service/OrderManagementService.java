@@ -50,8 +50,8 @@ public class OrderManagementService {
     }
 
     public void createOrder(OrderDTO orderDTO) throws Exception {
-        if(orderDTO.getId() == null  || orderDTO.getProducts() == null || orderDTO.getId().isEmpty() || orderDTO.getProducts().isEmpty())
-            throw new EmptyParamException("id and products could not be null");
+//        if(orderDTO.getId() == null  || orderDTO.getProducts() == null || orderDTO.getId().isEmpty() || orderDTO.getProducts().isEmpty())
+//            throw new EmptyParamException("id and products could not be null");
 
         try{
             calculateProductsValue(orderDTO);

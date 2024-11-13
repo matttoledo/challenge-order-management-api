@@ -32,7 +32,7 @@ public class OrdersApiApplication {
 
 	@Value("${readRedisUrl}")
 	private String readRedisUrl;
-	
+
 	public static final Integer MAX_CONNECTIONS = 500;
 
 	public static void main(String[] args) {
