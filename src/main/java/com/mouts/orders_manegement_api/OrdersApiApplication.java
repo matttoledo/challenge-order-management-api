@@ -32,11 +32,7 @@ public class OrdersApiApplication {
 
 	@Value("${readRedisUrl}")
 	private String readRedisUrl;
-
-	@Value("${dynamoDBUrl}")
-	private String dynamoDBUrl;
-
-
+	
 	public static final Integer MAX_CONNECTIONS = 500;
 
 	public static void main(String[] args) {
@@ -54,7 +50,7 @@ public class OrdersApiApplication {
 	@Bean
 	public AmazonDynamoDB createDynamoClient() {
 		return AmazonDynamoDBClientBuilder.standard()
-				.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(dynamoDBUrl, "us-east-1"))
+				.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("https://dynamodb-production.up.railway.app", "us-east-1"))
 				.withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials("test", "test")))
 				.withClientConfiguration(new ClientConfiguration().withMaxConnections(10))  // Configuração do cliente
 				.build();

@@ -1,3 +1,2 @@
 writeRedisUrl: ${Redis.REDIS_URL}
 readRedisUrl: ${Redis.REDIS_URL}
-dynamoDBUrl: https://dynamodb-production.up.railway.app
