@@ -6,10 +6,12 @@ import com.mouts.orders_manegement_api.client.OrderDynamoDBClient;
 import com.mouts.orders_manegement_api.dto.OrderDTO;
 import com.mouts.orders_manegement_api.dto.ProductDTO;
 import com.mouts.orders_manegement_api.entity.Order;
+import com.mouts.orders_manegement_api.exception.OrderNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 @Component
 @AllArgsConstructor
@@ -24,10 +26,9 @@ public class OrderService {
     }
 
     public Order recoverOrderById(String id) {
-        return orderDynamoDBClient.getOrder(id);
+        var orderOptional = Optional.ofNullable(orderDynamoDBClient.getOrder(id));
+        return orderOptional.orElseThrow(() -> new OrderNotFoundException("Order with id " + id + " not found."));
     }
-
-
 
     public Order dtoToEntity(OrderDTO orderDTO) throws Exception {
         var order = new Order();
