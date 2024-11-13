@@ -14,12 +14,12 @@ public class OrderController {
 
     private OrderManagementService orderManagementService;
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<OrderDTO> getOrderById(@PathVariable String id) throws Exception {
+    @GetMapping
+    public ResponseEntity<OrderDTO> getOrderById(@RequestParam String id) throws Exception {
         return ResponseEntity.ok().body(orderManagementService.getOrderById(id));
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public ResponseEntity<OrderDTO> createOrder(@RequestBody OrderDTO orderDTO) throws Exception {
         orderManagementService.createOrder(orderDTO);
         return ResponseEntity.ok().build();
