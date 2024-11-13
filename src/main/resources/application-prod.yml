@@ -1,2 +1,2 @@
-writeRedisUrl: ${ Redis.REDIS_URL }
-readRedisUrl: ${ Redis.REDIS_URL }
+writeRedisUrl: ${Redis.REDIS_URL}
+readRedisUrl: ${Redis.REDIS_URL}
