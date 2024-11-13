@@ -3,7 +3,6 @@ package com.mouts.orders_manegement_api.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mouts.orders_manegement_api.client.OrderDynamoDBClient;
-import com.mouts.orders_manegement_api.client.RedisClient;
 import com.mouts.orders_manegement_api.dto.OrderDTO;
 import com.mouts.orders_manegement_api.dto.ProductDTO;
 import com.mouts.orders_manegement_api.entity.Order;
@@ -20,15 +19,13 @@ public class OrderService {
 
     private OrderDynamoDBClient orderDynamoDBClient;
 
-    private RedisClient redisClient;
-
     private ObjectMapper objectMapper;
 
     public void createOrder(OrderDTO orderDTO) throws Exception {
         orderDynamoDBClient.saveOrder(dtoToEntity(orderDTO));
     }
 
-    public Order recoverOrderById(String id) throws Exception {
+    public Order recoverOrderById(String id) {
         Optional<Order> orderOptional = Optional.ofNullable(orderDynamoDBClient.getOrder(id));
         return orderOptional.orElseThrow(() -> new OrderNotFoundException("Order with id " + id + " not found."));
     }

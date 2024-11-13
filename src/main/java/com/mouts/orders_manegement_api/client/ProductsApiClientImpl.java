@@ -7,7 +7,7 @@ import java.util.Map;
 
 @Component
 @AllArgsConstructor
-public class ProductsApiImpl implements ProductsApi {
+public class ProductsApiClientImpl implements ProductsApiClient {
 
     @Override
     public Double getProductPriceById(String id) {

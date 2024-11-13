@@ -1,30 +1,25 @@
 package client;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mouts.orders_manegement_api.client.ProductsApi;
-import com.mouts.orders_manegement_api.dto.ProductDTO;
-import mockpayload.ProductsApiPayload;
-import org.apache.camel.Produce;
+import com.mouts.orders_manegement_api.client.ProductsApiClient;
 
-import java.util.HashMap;
+import java.util.Map;
 
-public class ProductsApiClientMock implements ProductsApi {
+public class ProductsApiClientMock implements ProductsApiClient {
 
-    private ObjectMapper objectMapper;
     @Override
     public Double getProductPriceById(String id) {
-        ProductDTO[] products = null;
-        try {
-            products = objectMapper.readValue(ProductsApiPayload.PAYLOAD, ProductDTO[].class);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
-        var productsMap = new HashMap<String, ProductDTO>();
-
-        for (var product : products){
-            productsMap.put(product.getId(), product);
-        }
-        return productsMap.get(id).getPrice();
+        var productMap = Map.of(
+                "1", 10.99,
+                "2", 15.49,
+                "3", 8.75,
+                "4", 20.00,
+                "5", 5.50,
+                "6", 12.30,
+                "7", 18.99,
+                "8", 25.00,
+                "9", 9.99,
+                "10", 30.00
+        );
+        return productMap.get(id);
     }
 }
