@@ -1,8 +1,8 @@
 package com.mouts.orders_manegement_api.client;
 
-import com.mouts.orders_manegement_api.dto.ProductDTO;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 public interface ProductsApi {
 
-    Double getProductById(String id);
+    Double getProductPriceById(String id) throws JsonProcessingException;
 }

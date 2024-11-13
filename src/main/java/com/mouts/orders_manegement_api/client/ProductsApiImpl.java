@@ -10,7 +10,7 @@ import java.util.Map;
 public class ProductsApiImpl implements ProductsApi {
 
     @Override
-    public Double getProductById(String id) {
+    public Double getProductPriceById(String id) {
         var productMap = Map.of(
                 "1", 10.99,
                 "2", 15.49,

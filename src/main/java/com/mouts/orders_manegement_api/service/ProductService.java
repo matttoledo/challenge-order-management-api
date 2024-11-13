@@ -1,5 +1,6 @@
 package com.mouts.orders_manegement_api.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.mouts.orders_manegement_api.client.ProductsApi;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -11,8 +12,8 @@ public class ProductService {
     private ProductsApi productsApi;
 
 
-    public Double getPriceByProductId(String id){
-        return productsApi.getProductById(id);
+    public Double getPriceByProductId(String id) {
+        return productsApi.getProductPriceById(id);
     }
 
 
