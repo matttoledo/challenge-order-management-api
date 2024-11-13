@@ -8,5 +8,4 @@ spring:
   main:
     allow-circular-references: true
 
-
 region: us-east-1
