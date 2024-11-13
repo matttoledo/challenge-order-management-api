@@ -9,18 +9,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping
 @AllArgsConstructor
 public class OrderController {
 
     private OrderManagementService orderManagementService;
 
-    @GetMapping
+    @GetMapping("/order")
     public ResponseEntity<OrderDTO> getOrderById(@RequestParam String id) throws Exception {
         return ResponseEntity.ok().body(orderManagementService.getOrderById(id));
     }
 
-    @RequestMapping
+    @RequestMapping("/order/create")
     public ResponseEntity<OrderDTO> createOrder(@RequestBody OrderDTO orderDTO) throws Exception {
         orderManagementService.createOrder(orderDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
