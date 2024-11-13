@@ -4,7 +4,6 @@ import client.OrderDynamoDBClientMock;
 import client.ProductsApiClientMock;
 import client.RedisClientMock;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mouts.orders_manegement_api.client.RedisClient;
 import com.mouts.orders_manegement_api.dto.OrderDTO;
 import com.mouts.orders_manegement_api.service.OrderManagementService;
 import com.mouts.orders_manegement_api.service.OrderService;

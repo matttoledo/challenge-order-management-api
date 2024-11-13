@@ -1,11 +1,9 @@
 package service;
 
 import client.OrderDynamoDBClientMock;
-import client.ProductsApiClientMock;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mouts.orders_manegement_api.dto.OrderDTO;
 import com.mouts.orders_manegement_api.service.OrderService;
-import com.mouts.orders_manegement_api.service.ProductService;
 import mockpayload.OrderInputPayload;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
