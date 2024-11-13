@@ -1,2 +1,2 @@
-writeRedisUrl: ${Redis.REDIS_URL}
-readRedisUrl: ${Redis.REDIS_URL}
+writeRedisUrl: redis://default:DZHSxrwOhQWDqUejYUzSZVVtWBLNyxdv@autorack.proxy.rlwy.net:39324
+readRedisUrl: redis://default:DZHSxrwOhQWDqUejYUzSZVVtWBLNyxdv@autorack.proxy.rlwy.net:39324
