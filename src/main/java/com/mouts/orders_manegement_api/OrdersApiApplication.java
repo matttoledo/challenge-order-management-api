@@ -50,7 +50,7 @@ public class OrdersApiApplication {
 	@Bean
 	public AmazonDynamoDB createDynamoClient() {
 		return AmazonDynamoDBClientBuilder.standard()
-				.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("http://dynamodb.railway.internal", region))
+				.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("dynamodb.railway.internal", region))
 				.withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials("test", "test")))
 				.withClientConfiguration(new ClientConfiguration().withMaxConnections(10))  // Configuração do cliente
 				.build();
