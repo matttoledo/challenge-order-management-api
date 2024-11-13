@@ -35,7 +35,6 @@
 		<aws-java-sdk-dynamodb.version>1.12.150</aws-java-sdk-dynamodb.version>
 		<lettuce.version>6.3.2.RELEASE</lettuce.version>
 		<lombok.version>1.18.32</lombok.version>
-		<springdoc-openapi-ui.version>1.7.0</springdoc-openapi-ui.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -52,9 +51,14 @@
 			<version>${lettuce.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-ui</artifactId>
-			<version>${springdoc-openapi-ui.version}</version>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${springfox-swagger2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${springfox-swagger-ui.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.amazonaws</groupId>
